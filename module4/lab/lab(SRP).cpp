@@ -40,6 +40,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "Russian");
+    
     vector<Item> items = {Item("1", 10.0), Item(" 2", 25.5)};
     Invoice invoice(1, items, 0.05);
 
