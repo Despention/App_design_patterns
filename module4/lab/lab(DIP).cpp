@@ -28,6 +28,8 @@ private:
 };
 
 int main() {
+    setlocale(LC_ALL, "Russian");
+    
     auto emailService = make_shared<EmailService>();
     Notification notification(emailService);
 
