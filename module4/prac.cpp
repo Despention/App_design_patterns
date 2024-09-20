@@ -2,12 +2,10 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <unordered_map>
 
 using namespace std;
 
 // Продукты
-
 class Product {
 public:
     string name;
@@ -16,8 +14,49 @@ public:
     Product(const string& name, double price) : name(name), price(price) {}
 };
 
-// Заказы
+// Интерфейс для оплаты
+class IPayment {
+public:
+    virtual void processPayment(double amount) const = 0;
+};
 
+// Интерфейс для доставки
+class IDelivery {
+public:
+    virtual void deliverOrder(int orderId) const = 0;
+};
+
+// Оплата
+class CreditCardPayment : public IPayment {
+public:
+    void processPayment(double amount) const override {
+        cout << "Обработка платежа по кредитной карте на сумму " << amount << " RUB" << endl;
+    }
+};
+
+class PayPalPayment : public IPayment {
+public:
+    void processPayment(double amount) const override {
+        cout << "Обработка платежа через PayPal на сумму " << amount << " RUB" << endl;
+    }
+};
+
+// Доставка
+class CourierDelivery : public IDelivery {
+public:
+    void deliverOrder(int orderId) const override {
+        cout << "Доставка заказа #" << orderId << " курьером." << endl;
+    }
+};
+
+class PostDelivery : public IDelivery {
+public:
+    void deliverOrder(int orderId) const override {
+        cout << "Доставка заказа #" << orderId << " почтой." << endl;
+    }
+};
+
+// Заказы
 class Order {
 public:
     int id; 
@@ -59,57 +98,14 @@ public:
         }
 
         if (delivery) {
-            delivery->deliverOrder(*this);
+            delivery->deliverOrder(id);
         } else {
             cout << "Способ доставки не выбран." << endl;
         }
     }
 };
 
-// Оплата
-
-class IPayment {
-public:
-    virtual void processPayment(double amount) const = 0;
-};
-
-class CreditCardPayment : public IPayment {
-public:
-    void processPayment(double amount) const override {
-        cout << "Обработка платежа по кредитной карте на сумму " << amount << " RUB" << endl;
-    }
-};
-
-class PayPalPayment : public IPayment {
-public:
-    void processPayment(double amount) const override {
-        cout << "Обработка платежа через PayPal на сумму " << amount << " RUB" << endl;
-    }
-};
-
-// Доставка
-
-class IDelivery {
-public:
-    virtual void deliverOrder(const Order& order) const = 0;
-};
-
-class CourierDelivery : public IDelivery {
-public:
-    void deliverOrder(const Order& order) const override {
-        cout << "Доставка заказа #" << order.id << " курьером." << endl;
-    }
-};
-
-class PostDelivery : public IDelivery {
-public:
-    void deliverOrder(const Order& order) const override {
-        cout << "Доставка заказа #" << order.id << " почтой." << endl;
-    }
-};
-
 // Уведомления
-
 class INotification {
 public:
     virtual void sendNotification(const string& message) const = 0;
@@ -130,7 +126,6 @@ public:
 };
 
 // Скидки 
-
 class DiscountCalculator {
 public:
     virtual double applyDiscount(double amount) const = 0;
@@ -149,7 +144,6 @@ public:
         return amount * 0.9;  
     }
 };
-
 
 int main() {
     Product product1("Футболка", 500.0);
