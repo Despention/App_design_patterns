@@ -58,6 +58,8 @@ private:
 };
 
 int main() {
+    setlocale(LC_ALL, "Russian");
+    
     DiscountManager manager;
     
     manager.registerDiscountCalculator(CustomerType::Regular, make_unique<RegularDiscount>());
