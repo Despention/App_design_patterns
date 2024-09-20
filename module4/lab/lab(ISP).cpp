@@ -40,6 +40,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "Russian");
+    
     HumanWorker humanWorker;
     RobotWorker robotWorker;
 
