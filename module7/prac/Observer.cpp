@@ -68,6 +68,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     auto stockExchange = make_shared<StockExchange>();
 
     auto trader1 = make_shared<Trader>("Алексей");
