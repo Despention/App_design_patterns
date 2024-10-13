@@ -48,6 +48,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     DeliveryContext deliveryContext;
 
     cout << "Выберите тип доставки: 1 - Стандартная, 2 - Экспресс, 3 - Международная: ";
