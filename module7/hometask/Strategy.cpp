@@ -49,6 +49,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     PaymentContext paymentContext;
 
     paymentContext.setStrategy(make_unique<CreditCardPayment>());
