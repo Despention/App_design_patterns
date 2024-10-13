@@ -66,8 +66,9 @@ public:
     }
 };
 
-// Клиентский код
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     auto exchange =make_shared<CurrencyExchange>();
 
     auto consoleObserver =make_shared<ConsoleObserver>();
