@@ -54,6 +54,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     TravelBookingContext context;
 
     cout << "Выберите транспорт: 1 - Самолет, 2 - Поезд, 3 - Автобус: ";
