@@ -57,6 +57,8 @@ public:
 };
 
 int main() {
+    setlocale(LC_ALL, "rus");
+    
     auto weatherStation = make_shared<WeatherStation>();
 
     auto mobileApp = make_shared<WeatherDisplay>("Мобильное приложение");
