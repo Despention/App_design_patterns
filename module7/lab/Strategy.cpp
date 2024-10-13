@@ -19,14 +19,14 @@ public:
 class ExpressShippingStrategy : public IShippingStrategy {
 public:
     double CalculateShippingCost(double weight, double distance) const override {
-        return (weight * 0.75 + distance * 0.2) + 10; // Дополнительная плата за скорость
+        return (weight * 0.75 + distance * 0.2) + 10;
     }
 };
 
 class InternationalShippingStrategy : public IShippingStrategy {
 public:
     double CalculateShippingCost(double weight, double distance) const override {
-        return weight * 1.0 + distance * 0.5 + 15; // Дополнительные сборы за международную доставку
+        return weight * 1.0 + distance * 0.5 + 15; 
     }
 };
 
